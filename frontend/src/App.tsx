@@ -39,7 +39,7 @@ function App() {
   return (
     <>
     <BrowserRouter>
-    <div className="flex max-w-6xl mx-auto">
+    <div className="flex max-w-6xl mx-auto bg-black">
       {authUser && <Slidebar/>}
      <Routes>
        <Route path="/" element={authUser ? <Home /> : <Navigate to={'/login'} />} />
