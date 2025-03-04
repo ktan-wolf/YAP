@@ -5,7 +5,7 @@ const {v2} = require("cloudinary");
 const path = require('path');
 const authRoutes = require('./route/auth');
 const userRoutes = require('./route/user');
-
+const cors = require("cors");
 const connectMongoDB = require('./db/connectMongoDB');
 const postRoutes = require('./route/post');
 const notificationsRoutes = require('./route/notification');
@@ -24,6 +24,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json({limit: "5mb"}));    
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(cors({ origin: "http://localhost:5173" }));  // Adjust port if needed
 
 
 app.use('/api/auth', authRoutes);
