@@ -29,7 +29,7 @@ const EditProfileModal = ({authUser}: {authUser: UserType | undefined}) => {
 	const {mutate:updateProfile, isPending:isUpdatingProfile} = useMutation({
 		mutationFn: async () => {
 			try {
-				const res = await axios.put(`/api/users/update`,{
+				const res = await axios.put(`https://yap-backend-p489.onrender.com/api/users/update`,{
 					fullname: formData.fullname,
                     username: formData.username,
                     email: formData.email,
@@ -37,6 +37,9 @@ const EditProfileModal = ({authUser}: {authUser: UserType | undefined}) => {
                     link: formData.link,
                     newPassword: formData.newPassword,
                     currentPassword: formData.currentPassword,
+				} , 
+				{
+					withCredentials : true,
 				});
 				return res.data;
 			} catch (error) {

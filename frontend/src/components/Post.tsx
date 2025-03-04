@@ -23,7 +23,9 @@ function Post({post}: Props) {
   const {mutate: deletePost, isPending: isDeleting} = useMutation({
 	mutationFn: async () => {
 		try {
-			const res = await axios.delete(`/api/posts/${post._id}`)
+			const res = await axios.delete(`https://yap-backend-p489.onrender.com/api/posts/${post._id}` , {
+				withCredentials : true,
+			})
 
 			return res.data;
 		} catch (error) {			
@@ -47,7 +49,9 @@ function Post({post}: Props) {
   const {mutate: likePost, isPending: isLiking} = useMutation({
 	mutationFn: async () => {
 		try {
-			const res = await axios.put(`/api/posts/like/${post._id}`)
+			const res = await axios.put(`https://yap-backend-p489.onrender.com/api/posts/like/${post._id}` , {} , {
+				withCredentials : true,
+			})
 			return res.data;
 		} catch (error) {
 			if(axios.isAxiosError(error)) throw error;
@@ -78,12 +82,13 @@ function Post({post}: Props) {
 	mutationFn: async (comment : string)=>{
 		try {
 			
-			const res = await axios.put(`/api/posts/comment/${post._id}`,{
+			const res = await axios.put(`https://yap-backend-p489.onrender.com/api/posts/comment/${post._id}`,{
 				text: comment
 			},{
 				headers: {
                     "Content-Type": "application/json"
-                }
+                },
+				withCredentials : true,
 			});
 			return res.data;
 		} catch (error) {

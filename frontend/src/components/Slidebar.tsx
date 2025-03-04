@@ -14,7 +14,9 @@ function Slidebar() {
 	const {mutate: logoutMutate} = useMutation({
 		mutationFn : async () =>{
 			try {
-				await axios.post("/api/auth/logout")
+				await axios.post("https://yap-backend-p489.onrender.com/api/auth/logout" , {} , {
+					withCredentials : true,
+				})
 			} catch (error) {
 		console.log(error);
 				const errorMsg = isAxiosError(error) ? error.response?.data?.message : "Something went wrong";

@@ -31,7 +31,7 @@ const Signup = () => {
   const {mutate, isError, isPending, error} = useMutation({
     mutationFn: async ({email, username, fullname, password} : FormInput) => {
       try {
-        const res = await axios.post("/api/auth/signup",{
+        const res = await axios.post("https://yap-backend-p489.onrender.com/api/auth/signup",{
           email,
           username,
           fullname,
@@ -39,7 +39,8 @@ const Signup = () => {
         },{
           headers: {
             "Content-Type": "application/json"
-          }
+          }, 
+          withCredentials : true,
         })
 
         toast.success("Account created successfully");

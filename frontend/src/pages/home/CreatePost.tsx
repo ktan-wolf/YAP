@@ -24,13 +24,14 @@ function CreatePost() {
   const {mutate: createPost, isPending, isError, error} = useMutation({
 	mutationFn: async ({text, img} : MutateType) => {
 		try {
-			const res = await axios.post('/api/posts/create',{
+			const res = await axios.post('https://yap-backend-p489.onrender.com/api/posts/create',{
 				text,
 				img
 			},{
 				headers: {
 					"Content-Type": "application/json"
-                }
+                },
+				withCredentials : true,
 			});			
 			
             return res.data;

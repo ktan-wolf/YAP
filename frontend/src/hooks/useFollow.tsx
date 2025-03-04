@@ -9,7 +9,9 @@ function useFollow(){
     const {mutate: followAndUnfollow, isPending}=useMutation({
         mutationFn: async (userId: string) =>{
             try {
-                const res = await axios.post(`/api/users/follow/${userId}`)
+                const res = await axios.post(`https://yap-backend-p489.onrender.com/api/users/follow/${userId}`,{} , {
+                    withCredentials : true,
+                })
                 return res.data;
             } catch (error) {
                 if(axios.isAxiosError(error)){

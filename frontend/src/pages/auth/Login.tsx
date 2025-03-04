@@ -21,13 +21,14 @@ function Login() {
   const {mutate: loginMutation, isError, isPending, error} = useMutation({
     mutationFn: async ({username, password} : FormInputs) => {
       try {
-        const res = await axios.post("/api/auth/login",{
+        const res = await axios.post("https://yap-backend-p489.onrender.com/api/auth/login",{
           username,
           password
         },{
           headers: {
             "Content-Type": "application/json"
-          }
+          }, 
+          withCredentials : true,
         })
 
         // toast.success("Account created successfully");

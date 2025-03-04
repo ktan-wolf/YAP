@@ -16,7 +16,9 @@ function App() {
     queryKey: ['authUser'],        
     queryFn: async () => {
       try {
-        const res = await axios.get("/api/auth/me");
+        const res = await axios.get("https://yap-backend-p489.onrender.com/api/auth/me" , {
+          withCredentials : true
+        });
 
         
         return res.data.user;

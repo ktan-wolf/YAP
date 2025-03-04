@@ -38,7 +38,9 @@ function ProfilePage() {
 		queryKey: ["userProfile"],
 		queryFn: async () => {
 			try {
-				const res = await axios.get(`/api/users/profile/${username}`)
+				const res = await axios.get(`https://yap-backend-p489.onrender.com/api/users/profile/${username}` , {
+					withCredentials : true,
+				})
 				return res.data;
 			} catch (error) {
 				if (axios.isAxiosError(error)) throw error;
@@ -51,9 +53,12 @@ function ProfilePage() {
 	const {mutateAsync:updateProfile, isPending:isUpdatingProfile} = useMutation({
 		mutationFn: async () => {
 			try {
-				const res = await axios.put(`/api/users/update`,{
+				const res = await axios.put(`https://yap-backend-p489.onrender.com/api/users/update`,{
 					coverImg,
                     profileImg
+				}, 
+				{
+					withCredentials : true,
 				});
 				return res.data;
 			} catch (error) {
