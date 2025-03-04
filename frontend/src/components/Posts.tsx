@@ -8,22 +8,32 @@ import { useEffect } from "react";
 
 function Posts({feedType, username, userId}: {feedType?: string, username?: string, userId?: string}){
 	
-  const getPostEndPoint = () =>{
-	switch(feedType){
-		case "forYou": return '/api/posts/all';
-		case "following": return '/api/posts/following';
-		case "posts": return `/api/posts/user/${username}`;
-		case "likes": return `/api/posts/likes/${userId}`;
-		default: return 'api/posts/all'; 
-	}
-  }
+	const BACKEND_URL = "https://yap-backend-p489.onrender.com"; // Change for production
+
+	const getPostEndPoint = () => {
+	  switch (feedType) {
+		case "forYou":
+		  return `${BACKEND_URL}/api/posts/all`;
+		case "following":
+		  return `${BACKEND_URL}/api/posts/following`;
+		case "posts":
+		  return `${BACKEND_URL}/api/posts/user/${username}`;
+		case "likes":
+		  return `${BACKEND_URL}/api/posts/likes/${userId}`;
+		default:
+		  return `${BACKEND_URL}/api/posts/all`;
+	  }
+	};
+	
 
   const POST_ENDPOINT = getPostEndPoint();
   const {data: posts, isLoading, refetch, isRefetching} = useQuery<PostType[]>({
 	queryKey: ["posts"],
 	queryFn: async ()=>{
 		try {
-			const res = await axios.get<PostType[]>(POST_ENDPOINT)
+			const res = await axios.get<PostType[]>(POST_ENDPOINT, {
+				withCredentials : true,
+			});
 			return res.data;
 
 		} catch (error) {
