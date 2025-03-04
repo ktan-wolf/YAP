@@ -19,6 +19,9 @@ package-lock.json
 pnpm-lock.yaml
 yarn.lock
 
+node_modules
+package-lock.json
+
 # === Frontend Specific ===
 frontend/node_modules/
 frontend/package-lock.json/
