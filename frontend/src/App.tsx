@@ -10,7 +10,7 @@ import { Toaster } from "react-hot-toast"
 import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 import LoadingSpinner from "./components/LoadingSpinner"
-// import "./App.css"
+import "./App.css"
 
 function App() {
   const {data: authUser, isLoading} = useQuery({

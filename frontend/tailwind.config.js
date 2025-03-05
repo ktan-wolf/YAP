@@ -2,7 +2,7 @@ import daisyui from 'daisyui'
 import * as daisyUIThemes  from "daisyui/src/theming/themes";
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [ 
+  content: [ "index.html" ,
     "./src/**/*.{js,ts,jsx,tsx,html}",
   ],
   theme: {
